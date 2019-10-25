@@ -1,0 +1,10 @@
+<h1> Users index </h1>
+<p><%= link_to 'new user', new_user_path %></p>
+<p><%= link_to 'home', root_path %></p>
+<p><%= link_to 'photos', photos_path %></p>
+<h1> All Users </h1>
+
+
+<%= render partial: 'user', collection: @users %>
+
+

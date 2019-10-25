@@ -1,0 +1,25 @@
+<h1>Post lists</h1>
+
+<p><%= link_to 'Article', articles_path %></p>
+<p><%= link_to 'new post', new_post_path %></p>
+
+<table>
+	<tr>
+		<th> post_Title </th>
+		<th>  </th>
+		<th> post_text</th>
+	</tr>
+	<% @post.each do |post| %>
+	<tr>
+		<td><%= post.title %></td>
+		<td>  </td>
+		<td><%= post.text %></td>
+		<td></td>
+		<td><%= link_to ' show ', post_path(post) %></td>
+		<td><%= link_to ' edit', edit_post_path(post) %></td>
+	</tr>
+	<% end %>
+</table>
+
+<p><%=link_to 'Home', root_path %></p>
+<p><%= link_to 'Download PDf', @post_download_pdf_url %></p>

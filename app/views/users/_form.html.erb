@@ -1,0 +1,33 @@
+
+<%= render partial: 'errors', locals: { object: @user } %>
+
+<%= form_for(user) do |f| %>
+
+<p>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+</p>
+<p>
+	<%= f.label :image %>
+	<%= f.file_field :image %>
+	<%= f.hidden_field :image_cache %>
+</p>
+
+<p>
+	<%= f.submit %>
+</p>
+
+<% if user.image? %>
+	<%= image_tag user.image.thumb.url %>
+	<%= image_tag user.image.small_thumb.url %>
+	<div>
+		<%= label_tag :remove_image do %>
+		Remove Image
+		<%= f.check_box :remove_image %>
+		<% end %>
+	</div>
+<% end %>
+
+
+
+<% end %>

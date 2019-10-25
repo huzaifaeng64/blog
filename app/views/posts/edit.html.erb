@@ -1,0 +1,26 @@
+<h1>Edit Post</h1>
+
+<%=form_with model: @post, local: true do |f| %>
+
+<% @post.errors.each do |attr, msg|  %>
+<ul>
+ <li><%= msg %></li> 
+</ul>
+<% end %>
+
+<p>
+	<%= f.label :title %><br>
+	<%= f.text_field :title %>
+</p>
+
+<p>
+	<%= f.label :text_field %><br>
+	<%= f.text_field :text %>
+</p>
+<P>
+	<%= f.submit %>
+</P>
+
+<%= link_to 'Back', posts_path %>
+
+<% end %>

@@ -1,0 +1,11 @@
+<h1> Patient index </h1>
+<p><%= link_to 'new patient', new_patient_path %></p>
+
+<h1> All patients </h1>
+
+<% @patient.each do |p| %>
+	<p> Patient Name: <%= p.name %> </p>
+<% end %>
+
+
+<p><%= link_to 'home', root_path %></p>

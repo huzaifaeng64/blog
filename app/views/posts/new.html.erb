@@ -1,0 +1,102 @@
+<%= form_with model: @post, local: true do |form2| %>
+
+
+<% @post.errors.each do |attr, msg|  %>
+<ul>
+ <li><%= msg %></li> 
+</ul>
+<% end %>
+
+  <p>
+    <%= form2.label :title %><br>
+    <%= form2.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= form2.label :text %><br>
+    <%= form2.text_area :text, size: "30x5" %>
+  </p>
+ 
+  <p>
+    <%= form2.submit %>
+  </p>
+  <h3> custom feilds to try form helper tags </h3>
+  <p>
+    <%= check_box_tag(:pet_dog) %>
+    <%= label_tag(:pet_dog, "Accept Agreement") %>
+  </p>
+  <p>
+    <%= radio_button_tag(:age, "child") %>
+    <%= label_tag(:age_child, "I am under 18") %>
+    <%= radio_button_tag(:age, "adult") %>
+    <%= label_tag(:age_adult, "I am over 18") %>
+  </p>
+  <p>
+    <%= label_tag(:password, "passwoord") %>
+    <%= password_field_tag(:password) %>
+    <%= search_field(:user, :name) %>
+    <%= date_field(:user, :born_on) %>
+    <%= telephone_field(:user, :phone) %>
+    <%= datetime_local_field(:user, :graduation_day) %>
+    <%= month_field(:user, :birthday_month) %>
+    <%= week_field(:user, :birthday_week) %>
+    <%= url_field(:user, :homepage) %>
+    <%= email_field(:user, :address) %>
+    <%= color_field(:user, :favorite_color) %>
+    <%= time_field(:task, :started_at) %>
+    <%= number_field(:product, :price, in: 1.0..20.0, step: 0.5) %>
+    <%= range_field(:product, :discount, in: 1..100) %>
+  </p>
+  <p>
+    <select name="city_id" id="city_id">
+    <option value="1">Lisbon</option>
+    <option value="2" selected>Madrid</option>
+    <option value="3">Berlin</option>
+    </select>
+
+    <%= select_tag(:city_id, raw('<option value="1">Lisbon</option><option value="2">Madrid</option><option value="3">Berlin</option>')) %>
+
+    <%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2], ['Berlin', 3]],3)) %>
+    
+    <%= form2.select(:title, [['Lisbon', 1], ['Madrid', 2], ['Berlin', 3]]) %>
+    
+    <% array = Post.all.map { |p| [p.title, p.id] } %>
+    <%= form2.select(:title, options_for_select(array,3) )%>
+    <% arr = options_from_collection_for_select(Post.all, :id, :title) %>
+    <%= form2.select(:title, options_for_select(arr) )%>
+    <%= form2.collection_select(:post_id, Post.all, :id, :title) %>
+
+    <%= time_zone_select(:@post, :time_zone) %>
+    <%= time_zone_select(:person, :time_zone) %>
+
+    <%= select_date Date.today, prefix: :start_date %>
+    <br>
+    <%= date_select :post, :text %>
+    <br>
+    <%= datetime_select :post, :text %>
+    <br>
+    <%= time_select :post, :text %>
+    <br>
+    <%= form2.label(:text, "enter some file") %>
+    <%= form2.file_field :text%>
+
+    <%= form2.date_field(:post) %>
+    <%= form2.label(:post, "accept the Agreement") %>
+    <%= form2.check_box(:post) %>
+    <%= form2.radio_button(:post,"child") %>
+    <%= form2.label(:post, "under 18") %>
+    <%= form2.radio_button(:post,"adult") %>
+    <%= form2.label(:post,"over 18") %>
+    
+    <%= select_year(2009) %>
+    <%= select_year(Time.new(2009)) %>
+
+
+
+  </p>
+
+
+
+<%= link_to 'Back', posts_path %>
+
+<% end %>

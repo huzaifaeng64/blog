@@ -1,0 +1,33 @@
+
+<p><%= link_to 'users', users_path %></p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.js"></script>
+<script type="text/javascript">
+	$("#lightgallery").lightGallery();
+</script>
+
+
+<div>
+<ul id="lightgallery">
+	<% @users.each do |user| %>
+  		<a data-src="<%=user.image.url if user.image?%>">
+      		<%= image_tag(user.image.url, alt: 'image') if user.image? %>
+  		</a>
+  	<% end %>
+</ul>
+</div>
+
+<% if false %>
+<div class="container">
+	<h3> photo gallery </h3>
+
+	<ul id="lightGallery">
+		<% @users.each do |user| %>
+			<% next if user.image.nil? %>
+			<a data-src="<%= user.image.url if user.image.present? %>">
+		      	<%= image_tag(user.image.url, alt: 'image') if user.image? %>
+		  	</a>
+		<% end %>
+	</ul>
+</div>
+<% end %>
